@@ -37,7 +37,18 @@
       <div class="sub header">Converts CSS stylesheets between left-to-right and right-to-left. This is a JavaScript port for Node.js of <a href="http://code.google.com/p/cssjanus/" target="_blank">CSSJanus</a>, which is written in python..</div>
   </div>
   </h1>
-    <div class="ui two column stackable page grid">
+    <div class="ui vertically divided stackable grid">
+     <div class="one column row">
+      <div class="column">
+        <h1 class="ui  header">
+          <div class="content">
+            CSS Janus
+            <div class="sub header">Converts CSS stylesheets between left-to-right and right-to-left. This is a JavaScript port for Node.js of <a href="http://code.google.com/p/cssjanus/" target="_blank">CSSJanus</a>, which is written in python..</div>
+          </div>
+        </h1>
+      </div>
+    </div>
+    <div class="two column row">
       <div class="column">
         <div class="ui segment">
             <div class="ui top attached label">Input</div>
@@ -66,10 +77,11 @@
       <div class="column">
         <div class="ui segment">
           <div class="ui top attached label">Output</div>
-            <textarea id="output" class="ui input"></textarea>       
+          <textarea id="output" class="ui input"></textarea>       
         </div>
       </div>
     </div>
+</div>
     <script type="text/javascript">
       var cssjanus,input,output,swapLtrRtlInUrl, swapLeftRightInUrl ;
       $(function(){
