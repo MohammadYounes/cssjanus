@@ -56,11 +56,7 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
-
-
 
                     <div class="ui right floated green animated convert button">
                         <div class="visible content">Convert</div>
@@ -83,16 +79,12 @@
 
                     <div class="ui top attached label">Output</div>
                     
-                    <div class="ui small black labeled icon  button copy">
+                    <div class="ui right floated small black labeled icon  button copy">
                         <i class="copy icon"></i>
                         COPY
                     </div>
 
                     <textarea id="output" class="ui input"></textarea>
-
-                 
-
-
 
                 </div>
             </div>
@@ -150,7 +142,7 @@
                 });
                 client.on('mouseover', function (client, args) {
                     copyButton
-                        .popup({ variation: "inverted", position: 'top center', content: 'copy to clipboard' })
+                        .popup({ variation: "inverted", position: 'bottom center', content: 'copy to clipboard' })
                         .popup('show')
                     ;
                     $(this).addClass("hover");
@@ -169,7 +161,7 @@
                 client.on("complete", function (client, args) {
                     copyButton
                         .popup('hide')
-                        .popup({ variation: "inverted", position: 'top center', content: 'copied!' })
+                        .popup({ variation: "inverted", position: 'bottom center', content: 'copied!' })
                         .popup('show');
 
                 });
