@@ -135,16 +135,13 @@
 
             ZeroClipboard.config( { moviePath: "ZeroClipboard.swf" });
             var client = new ZeroClipboard(copyButton[0]);
-
+            client.on('noflash', function (client, args) {
+                $(this).css('display', 'none');
+            });
             client.on("load", function (client) {
-
                 client.clip($(this)[0]);
-
                 client.on('dataRequested', function (client, args) {
                     client.setText(output.val());
-                });
-                client.on('noflash', function (client, args) {
-                    $(this).css('display', 'none');
                 });
                 client.on('mouseover', function (client, args) {
                     copyButton
@@ -163,7 +160,6 @@
                 client.on('mouseup', function (client, args) {
                     $(this).removeClass("active");
                 });
-
                 client.on("complete", function (client, args) {
                     copyButton
                         .popup('hide')
