@@ -1,100 +1,182 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Cssjanus by MohammadYounes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="http://semantic-ui.com/build/packaged/css/semantic.css">
+    <link rel="stylesheet" type="text/css" href="css.css">
     <script type="text/javascript" src="//code.jquery.com/jquery-2.0.2.js"></script>
     <script type="text/javascript"> var exports = {};</script>
     <script type="text/javascript" src="https://rawgithub.com/trevorparscal/cssjanus/master/lib/cssjanus.js"></script>
     <script type="text/javascript" src="http://semantic-ui.com/build/packaged/javascript/semantic.js"></script>
-    <style type="text/css">
-      @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+    <script type="text/javascript" src="https://rawgithub.com/zeroclipboard/zeroclipboard/master/ZeroClipboard.js"></script>
+</head>
+<body>
 
-      html, body {
-          height: 100%;
-          font-size: 15px;
-      }
-      html, body {
-          font-family: "Open Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
-      }
-      textarea{
-          margin:2em 0;
-          min-width:100px;
-          min-height:100px;
-          width:100%;
-          height:100%;
-      }
-      #output{height: 210px;}
-    </style>
-  </head>
-  <body>
-    <h1 class="ui huge dividing header">
-      <div class="content">
-        CSS Janus
-        <div class="sub header">Converts CSS stylesheets between left-to-right and right-to-left. This is a JavaScript port for Node.js of <a href="http://code.google.com/p/cssjanus/" target="_blank">CSSJanus</a>, which is written in python..</div>
-      </div>
-    </h1>
     <div class="ui two column stackable page grid">
-      <div class="column">
-        <div class="ui segment">
-            <div class="ui top attached label">Input</div>
-            <textarea id="input" class="ui input"></textarea>
-             <div class="ui bottom attached basic form accordion">
-                <div class="title field"> <i class="dropdown icon"></i>  Options </div>
-                <div class="content">
-                    <div class="field">
-                        <div class="ui toggle checkbox">
-                            <input type="checkbox" id="swapLtrRtlInUrl"/>
-                            <label> Swap 'ltr' and 'rtl' in URLs</label>
-                        </div>             
+        <div class="two column row">
+            <h2 class="ui header">
+                CSS Janus
+            </h2>
+            <h5 class="ui dividing header">
+                Converts CSS stylesheets between left-to-right and right-to-left. This is a JavaScript port for Node.js of <a href="http://code.google.com/p/cssjanus/" target="_blank">CSSJanus</a>, which is written in python.
+            </h5>
+        </div>
+    </div>
+    
+    <div class="ui two column stackable page grid">
+        <div class="two column row">
+            <div class="column">
+                <div class="ui red segment">
+                    <div class="ui top attached label">Input</div>
+                    <textarea id="input" class="ui input"></textarea>
+
+
+                    <div class="ui clearing divider"></div>
+
+                    <div class="ui bottom attached basic form accordion">
+                        <div class="title field"> <i class="dropdown icon"></i>  Options </div>
+                        <div class="content">
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" id="swapLtrRtlInUrl" />
+                                    <label> Swap 'ltr' and 'rtl' in URLs</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" id="swapLeftRightInUrl" />
+                                    <label>Swap 'left' and 'right' in URLs</label>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="field">
-                         <div class="ui toggle checkbox">
-                            <input type="checkbox" id="swapLeftRightInUrl"/>
-                            <label>Swap 'left' and 'right' in URLs</label>
-                        </div>  
-                    </div>                    
+
+
+
+
+                    <div class="ui right floated green animated convert button">
+                        <div class="visible content">Convert</div>
+                        <div class="hidden content">
+                            <i class="right arrow icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="ui purple vertical animated insert button">
+                        <div class="visible content">Try this</div>
+                        <div class="hidden content">
+                            Example!
+                        </div>
+                    </div>
+
+                    <div class="ui red fade animated clear button">
+                        <div class="visible content">Clear </div>
+                        <div class="hidden content">
+                            Contents
+                        </div>
+                    </div>
                 </div>
-                <div class="ui right floated secondary submit button">Convert</div>
-          </div>      
+            </div>
+
+            <div class="column">
+                <div class="ui green segment">
+
+                    <div class="ui top attached label">Output</div>
+
+                    <textarea id="output" class="ui input"></textarea>
+
+                    <div class="ui right floated black labeled icon  button copy">
+
+                        <i class="copy icon"></i>
+                        COPY
+                    </div>
+
+
+
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <div class="column">
-        <div class="ui segment">
-          <div class="ui top attached label">Output</div>
-          <textarea id="output" class="ui input"></textarea>       
-        </div>
-      </div>
-</div>
+
+
+    </div>
 
     <script type="text/javascript">
-      var cssjanus,input,output,swapLtrRtlInUrl, swapLeftRightInUrl ;
-      $(function(){
-          cssjanus = new CSSJanus();
-          input = $('#input');
-          output = $('#output');
-          swapLtrRtlInUrl = $('#swapLtrRtlInUrl');
-          swapLeftRightInUrl  = $('#swapLeftRightInUrl');
-          
-          $('.checkbox').checkbox();
-          $('.accordion').accordion();
-          
-          
-          
-          $('.button').click(function(){
-              output.val(
-                cssjanus.transform(
-                    input.val(),
-                    swapLtrRtlInUrl.prop('checked'),
-                    swapLeftRightInUrl.prop('checked')
-                    )
-                );
-          });
-      });
+        var cssjanus, input, output, swapLtrRtlInUrl, swapLeftRightInUrl,
+            convertButton, clearButton, insertButton, copyButton;
+        $(function () {
+            cssjanus = new CSSJanus();
+            input = $('#input');
+            output = $('#output');
+            swapLtrRtlInUrl = $('#swapLtrRtlInUrl');
+            swapLeftRightInUrl = $('#swapLeftRightInUrl');
+            convertButton = $('.convert.button');
+            insertButton = $('.insert.button');
+            clearButton= $('.clear.button');
+            copyButton = $('.copy.button');
+
+            $('.checkbox').checkbox();
+            $('.accordion').accordion();
+
+            convertButton.click(function () {
+                output.val(
+                  cssjanus.transform(
+                      input.val(),
+                      swapLtrRtlInUrl.prop('checked'),
+                      swapLeftRightInUrl.prop('checked')
+                      )
+                  );
+            });
+
+            clearButton.click(function () {
+                input.val('');
+            });
+
+            insertButton.click(function () {
+                input.val(".classname-should-not-change-ltr-left-rtl-right { \npadding: 1px 2px 3px 4px; \nmargin-right: 3em; \nbackground-position: 5% 80%; \nbackground: url(testme-bright-cleft-left-ltr.gif); /* try me with flags */ \ncursor: ne-resize; \n} \n/* @noflip */ \n.dontchangeme { float:left } \n.changeme { float:left }");
+            });
+
+            var client = new ZeroClipboard(copyButton[0], { moviePath: "ZeroClipboard.swf" });
+
+            client.on("load", function (client) {
+
+                client.clip($(this)[0]);
+
+                client.on('dataRequested', function (client, args) {
+                    client.setText(output.val());
+                });
+                client.on('noflash', function (client, args) {
+                    $(this).css('display', 'none');
+                });
+                client.on('mouseover', function (client, args) {
+                    copyButton
+                        .popup({ variation: "inverted", position: 'top center', content: 'copy to clipboard' })
+                        .popup('show')
+                    ;
+                    $(this).addClass("hover");
+                });
+                client.on('mouseout', function (client, args) {
+                    copyButton.popup('hide');
+                    $(this).removeClass("hover");
+                });
+                client.on('mousedown', function (client, args) {
+                    $(this).addClass("active");
+                });
+                client.on('mouseup', function (client, args) {
+                    $(this).removeClass("active");
+                });
+
+                client.on("complete", function (client, args) {
+                    copyButton
+                        .popup('hide')
+                        .popup({ variation: "inverted", position: 'top center', content: 'copied!' })
+                        .popup('show');
+
+                });
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
