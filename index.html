@@ -133,7 +133,8 @@
                 input.val(".classname-should-not-change-ltr-left-rtl-right { \npadding: 1px 2px 3px 4px; \nmargin-right: 3em; \nbackground-position: 5% 80%; \nbackground: url(testme-bright-cleft-left-ltr.gif); /* try me with flags */ \ncursor: ne-resize; \n} \n/* @noflip */ \n.dontchangeme { float:left } \n.changeme { float:left }");
             });
 
-            var client = new ZeroClipboard(copyButton[0], { moviePath: "ZeroClipboard.swf" });
+            ZeroClipboard.config( { moviePath: "ZeroClipboard.swf" });
+            var client = new ZeroClipboard(copyButton[0]);
 
             client.on("load", function (client) {
 
