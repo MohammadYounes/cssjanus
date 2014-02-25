@@ -136,7 +136,7 @@
             ZeroClipboard.config( { moviePath: "ZeroClipboard.swf" });
             var client = new ZeroClipboard(copyButton[0]);
             client.on('noflash', function (client, args) {
-                $(this).css('display', 'none');
+                copyButton.css('display', 'none');
             });
             client.on("load", function (client) {
                 client.clip($(this)[0]);
